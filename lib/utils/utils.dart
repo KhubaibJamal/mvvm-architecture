@@ -4,6 +4,14 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 class Utils {
+  // change focus node
+  static void fieldFocusChange(
+      BuildContext context, FocusNode current, FocusNode nextFocus) {
+    current.unfocus();
+    FocusScope.of(context).requestFocus(nextFocus);
+  }
+
+  // flutter toast
   static void flutterToast(String message) {
     Fluttertoast.showToast(
       msg: message,
@@ -15,7 +23,7 @@ class Utils {
   }
 
   // another flush bar
-  static void flushBar(String message, BuildContext context) {
+  static void flushBarErrorMessage(String message, BuildContext context) {
     showFlushbar(
       context: context,
       flushbar: Flushbar(
