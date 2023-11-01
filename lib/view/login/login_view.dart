@@ -17,6 +17,20 @@ class _LoginViewState extends State<LoginView> {
 
   FocusNode emailFocusNode = FocusNode();
   FocusNode passwordFocusNode = FocusNode();
+
+  @override
+  void dispose() {
+    emailController.dispose();
+    passwordController.dispose();
+
+    emailFocusNode.dispose();
+    passwordFocusNode.dispose();
+
+    _obscureText.dispose();
+
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -48,7 +62,7 @@ class _LoginViewState extends State<LoginView> {
                     obscureText: _obscureText.value,
                     decoration: InputDecoration(
                       hintText: "password",
-                      prefixIcon: Icon(Icons.lock_outline),
+                      prefixIcon: const Icon(Icons.lock_outline),
                       suffixIcon: IconButton(
                         onPressed: () {
                           _obscureText.value = !_obscureText.value;
