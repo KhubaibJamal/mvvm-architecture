@@ -35,7 +35,7 @@ class Utils {
         isDismissible: true,
         borderRadius: BorderRadius.circular(30),
         dismissDirection: FlushbarDismissDirection.HORIZONTAL,
-        flushbarPosition: FlushbarPosition.TOP,
+        flushbarPosition: FlushbarPosition.BOTTOM,
         duration: const Duration(seconds: 3),
         reverseAnimationCurve: Curves.easeInOut,
         forwardAnimationCurve: Curves.decelerate,
