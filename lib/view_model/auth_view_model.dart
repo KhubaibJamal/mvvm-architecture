@@ -6,14 +6,15 @@ class AuthViewModel extends ChangeNotifier {
   // object of auth repository
   AuthRepository authRepository = AuthRepository();
 
-  bool _loading = false;
-  bool get loading => _loading;
+  bool _loginLoading = false;
+  bool get loginLoading => _loginLoading;
 
   setLoading(bool value) {
-    _loading = value;
+    _loginLoading = value;
     notifyListeners();
   }
 
+  // for login
   Future<void> loginApi(dynamic data, BuildContext context) async {
     setLoading(true);
 
@@ -22,6 +23,26 @@ class AuthViewModel extends ChangeNotifier {
       Utils.flushBarErrorMessage("Login Successfully", context);
     }).onError((error, stackTrace) {
       setLoading(false);
+      Utils.flushBarErrorMessage(error.toString(), context);
+    });
+  }
+
+  // for sign up
+  bool _signUpLoading = false;
+  bool get signUpLoading => _signUpLoading;
+
+  setSignUpLoading(bool value) {
+    _signUpLoading = value;
+    notifyListeners();
+  }
+
+  Future<void> signUpApi(dynamic data, BuildContext context) async {
+    setSignUpLoading(true);
+    authRepository.signUpApi(data).then((value) {
+      setSignUpLoading(false);
+      Utils.flushBarErrorMessage("Sign-up Successfully", context);
+    }).onError((error, stackTrace) {
+      setSignUpLoading(false);
       Utils.flushBarErrorMessage(error.toString(), context);
     });
   }

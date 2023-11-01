@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:mvvm/resources/component/round_button.dart';
-import 'package:mvvm/utils/routes/routes.dart';
-import 'package:mvvm/utils/utils.dart';
 import 'package:provider/provider.dart';
 
+import '../../resources/component/round_button.dart';
+import '../../utils/routes/routes.dart';
+import '../../utils/utils.dart';
 import '../../view_model/auth_view_model.dart';
 
-class LoginView extends StatefulWidget {
-  const LoginView({super.key});
+class SignUpView extends StatefulWidget {
+  const SignUpView({super.key});
 
   @override
-  State<LoginView> createState() => _LoginViewState();
+  State<SignUpView> createState() => _SignUpViewState();
 }
 
-class _LoginViewState extends State<LoginView> {
+class _SignUpViewState extends State<SignUpView> {
   final ValueNotifier<bool> _obscureText = ValueNotifier<bool>(true);
 
   TextEditingController emailController = TextEditingController();
@@ -86,8 +86,8 @@ class _LoginViewState extends State<LoginView> {
               // login button
               const SizedBox(height: 20),
               RoundButton(
-                title: "Login",
-                loading: authViewModel.loginLoading,
+                title: "sign up",
+                loading: authViewModel.signUpLoading,
                 onPress: () {
                   if (emailController.text.isEmpty) {
                     Utils.flushBarErrorMessage('Please enter email', context);
@@ -102,16 +102,16 @@ class _LoginViewState extends State<LoginView> {
                       "email": emailController.text.toString(),
                       "password": passwordController.text.toString(),
                     };
-                    authViewModel.loginApi(data, context);
+                    authViewModel.signUpApi(data, context);
                   }
                 },
               ),
               const SizedBox(height: 20),
               InkWell(
                 onTap: () {
-                  Navigator.pushNamed(context, RouteName.signUp);
+                  Navigator.pushNamed(context, RouteName.login);
                 },
-                child: const Text("Don't have an account? SignUp"),
+                child: const Text("Already have an account? Login"),
               )
             ],
           ),
