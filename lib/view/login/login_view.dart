@@ -102,7 +102,9 @@ class _LoginViewState extends State<LoginView> {
                       "email": emailController.text.toString(),
                       "password": passwordController.text.toString(),
                     };
-                    authViewModel.loginApi(data, context);
+                    authViewModel.loginApi(data, context).then((value) {
+                      Navigator.pushNamed(context, RouteName.home);
+                    });
                   }
                 },
               ),
